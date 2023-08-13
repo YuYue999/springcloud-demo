@@ -1,0 +1,14 @@
+server:
+  port: 9002
+eureka:
+  instance:
+    hostname: eureka9002.com #eureka服务端的实例名称
+  client:
+    register-with-eureka: false # false 表示不向注册中心注册自己
+    fetch-registry: false #false 表示自己就是注册中心，职责就是维护服务实例，并不需要去检索服务
+    service-url:
+      defaultZone: http://eureka9001.com:9001/eureka
+  server:
+    enable-self-preservation: false  # false 表示关闭自我保护机制
+    eviction-interval-timer-in-ms: 2000 # 清理无效节点的时间间隔 默认60000毫秒，即60秒，这里为了测试快速，省去等待时间，改调为2秒
+    #renewal-percent-threshold: 0.85 # 默认0.85，服务端会检查最近15分钟所有eureka实例心跳占比，若低于85%则会触发自我保护机制

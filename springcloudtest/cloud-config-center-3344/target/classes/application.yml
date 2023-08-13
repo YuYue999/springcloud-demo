@@ -1,0 +1,46 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name:  cloud-config-center #注册进Eureka服务器的微服务名
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/yuyue_163com/springcloud-config.git #GitHub或者码云 上的 clone地址
+          ####搜索目录 github或者码云 仓库名字
+          search-paths:
+            - springcloud-config
+          # 账号
+          username: yuyue_163com
+          # 密码
+          password: QBYC56324678
+          # 跳过ssl 验证
+#          skipSslValidation: true
+        # 设置默认的github或者码云 分支
+#        default-label: master
+#      ####所读取的gitHub或者码云 上的分支
+      label: master
+#服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka
+
+
+#rabbitmq相关配置
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+
+##rabbitmq相关配置,暴露bus刷新配置的端点
+management:
+  endpoints: #暴露bus刷新配置的端点
+    web:
+      exposure:
+        include: 'bus-refresh'
+
+
